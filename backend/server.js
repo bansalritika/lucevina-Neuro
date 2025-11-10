@@ -6,15 +6,31 @@ import authRoute from "./routes/authRoute.js";
 import auth from "./routes/auth.js";
 import categoryRoute from "./routes/categoryRoute.js";
 import productRoute from "./routes/productRoute.js";
+import cartRoute from "./routes/cartRoute.js";
+import addressRoute from "./routes/addressRoute.js";
+import paymentRoute from "./routes/paymentRoute.js";
+import orderRoute from "./routes/orderRoute.js";
+import blogRoutes from "./routes/blogRoute.js";
 import bcrypt from "bcryptjs";
 import Admin from "./models/Admin.js";
 
 dotenv.config();
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:8080",
+  "https://lucevina-neuro.vercel.app"
+];
+
+
 // Middleware
+app.use(
+  cors({
+    origin: allowedOrigins,
+    credentials: true,
+  })
+);
 app.use(express.json());
-app.use(cors());
 
 // const createAdmin = async () => { 
 //   const adminEmail = process.env.EMAIL_USER;
@@ -42,6 +58,11 @@ app.use("/api/authcustom", authRoute);
 app.use("/api/auth", auth);
 app.use("/api/categories", categoryRoute);
 app.use("/api/products", productRoute);
+app.use("/api/cart", cartRoute);
+app.use("/api/address", addressRoute);
+app.use("/api/orders", orderRoute);
+app.use("/api/payment", paymentRoute);
+app.use("/api/blogs", blogRoutes);
 
 // Sample route
 app.get("/", (req, res) => {

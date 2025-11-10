@@ -172,7 +172,7 @@ const Navigation = ({ isBannerVisible }) => {
     "OUR PRODUCTS": "/ourproducts",
     "FIND YOUR ROUTINE": "/routine",
     "ABOUT US": "/about",
-    "OUR BLOGS": "/blogs",
+    "OUR BLOGS": "/blog",
     "FIND US": "/findus",
   };
 

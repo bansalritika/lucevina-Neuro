@@ -30,6 +30,8 @@ interface Product {
   subtitle: string;
   description: string;
   price: number;
+  discount: number;
+  stock: number;
   images: string[];
   categories: Category[];
 }
@@ -39,6 +41,8 @@ interface ProductForm {
   subtitle: string;
   description: string;
   price: string;
+  discount: string;
+  stock: string;
   images: (string | File)[];
   mainTypes: CategoryType[];
   selectedCategories: Record<CategoryType, string[]>;
@@ -58,6 +62,8 @@ export default function Products() {
     subtitle: "",
     description: "",
     price: "",
+    discount: "",
+    stock: "",
     images: [],
     mainTypes: [],
     selectedCategories: {
@@ -153,6 +159,8 @@ export default function Products() {
     formData.append("subtitle", form.subtitle);
     formData.append("description", form.description);
     formData.append("price", form.price);
+    formData.append("discount", form.discount);
+    formData.append("stock", form.stock);
     form.images.forEach((img) => {
       formData.append("images", img);
     });
@@ -180,6 +188,8 @@ export default function Products() {
           subtitle: "",
           description: "",
           price: "",
+          discount: "",
+          stock: "",
           images: [],
           mainTypes: [],
           selectedCategories: {
@@ -218,6 +228,8 @@ export default function Products() {
       subtitle: prod.subtitle,
       description: prod.description,
       price: prod.price.toString(),
+      discount: prod.discount.toString(),
+      stock: prod.stock.toString(),
       images: prod.images,
       mainTypes: Array.from(new Set(prod.categories.map((c) => c.categoryType))),
       selectedCategories,
@@ -253,6 +265,7 @@ export default function Products() {
                 value={form.title}
                 onChange={(e) => setForm({ ...form, title: e.target.value })}
                 placeholder="Enter product title"
+                name="title"
               />
             </div>
 
@@ -262,6 +275,7 @@ export default function Products() {
                 value={form.subtitle}
                 onChange={(e) => setForm({ ...form, subtitle: e.target.value })}
                 placeholder="Enter product subtitle"
+                name="subtitle"
               />
             </div>
 
@@ -271,6 +285,7 @@ export default function Products() {
                 value={form.description}
                 onChange={(e) => setForm({ ...form, description: e.target.value })}
                 placeholder="Enter product description"
+                name="description"
               />
             </div>
 
@@ -281,12 +296,36 @@ export default function Products() {
                 value={form.price}
                 onChange={(e) => setForm({ ...form, price: e.target.value })}
                 placeholder="Enter product price"
+                name="price"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label>Discount %</Label>
+              <Input
+                type="number"
+                value={form.discount}
+                onChange={(e) => setForm({ ...form, discount: e.target.value })}
+                placeholder="Enter discount"
+                max={99}
+                name="discount"
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label>Stock</Label>
+              <Input
+                type="number"
+                value={form.stock}
+                onChange={(e) => setForm({ ...form, stock: e.target.value })}
+                placeholder="Enter stock quantity"
+                name="stock"
               />
             </div>
 
             <div className="space-y-2">
               <Label>Image</Label>
-              <Input type="file" accept=".jpg,.jpeg,.png" onChange={handleImageChange} />
+              <Input type="file" accept=".jpg,.jpeg,.png" multiple onChange={handleImageChange} />
               {form.images.length > 0 && (
   <div className="flex flex-wrap gap-3 mt-3">
     {form.images.map((img, i) => (
@@ -379,6 +418,8 @@ export default function Products() {
                   <TableHead>SubTitle</TableHead>
                   <TableHead>Description</TableHead>
                   <TableHead>Price</TableHead>
+                  <TableHead>Discount</TableHead>
+                  <TableHead>Stock</TableHead>
                   <TableHead>Categories</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
@@ -404,6 +445,8 @@ export default function Products() {
                       <TableCell>{prod.subtitle}</TableCell>
                       <TableCell>{prod.description}</TableCell>
                       <TableCell>${prod.price}</TableCell>
+                      <TableCell>{prod.discount}%</TableCell>
+                      <TableCell>{prod.stock}</TableCell>
                       <TableCell>
                         <div className="flex flex-wrap gap-1 text-xs">
                           {prod.categories.map((cat) => (

@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const cartItemSchema = new mongoose.Schema({
   productId: {
@@ -12,10 +12,6 @@ const cartItemSchema = new mongoose.Schema({
   quantity: { type: Number, required: true, min: 1 },
   image: { type: String },
   stock: { type: Number, min: 0 },
-  sizes: { type: [String], default: [] },
-  colors: { type: [String], default: [] },
-  selectedColor: { type: String, default: "" },
-  selectedSize: { type: String, default: "" },
 });
 
 const cartSchema = new mongoose.Schema({
@@ -25,4 +21,4 @@ const cartSchema = new mongoose.Schema({
   updatedAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model("Cart", cartSchema);
+export default mongoose.model("Cart", cartSchema);

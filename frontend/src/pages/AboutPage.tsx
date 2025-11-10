@@ -1,7 +1,7 @@
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Navigation from "@/components/Navigation";
-import { useRef } from "react";
 import NewsletterSection from "@/components/NewsletterSection";
+import { useRef } from "react";
 import Video from "@/assets/desktop-routine-finder.mp4";
 import img1 from "@/assets/quiz1.png";
 import logoblack from "../assets/logoblack.png";

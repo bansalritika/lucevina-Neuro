@@ -42,9 +42,9 @@ router.get("/:id", async (req, res) => {
    ====================================================== */
 router.post("/", protect, adminOnly, upload.array("images", 5), async (req, res) => {
   try {
-    const { title, subtitle, description, price, categories } = req.body;
+    const { title, subtitle, description, price, discount, stock, categories } = req.body;
 
-    if (!title || !subtitle, !price || !req.files || req.files.length === 0) {
+    if (!title || !subtitle || !price || !stock ||!discount || !req.files || req.files.length === 0) {
       return res.status(400).json({ message: "Title, price, and image are required" });
     }
 
@@ -63,6 +63,8 @@ router.post("/", protect, adminOnly, upload.array("images", 5), async (req, res)
       subtitle,
       description,
       price,
+      discount,
+      stock,
       images: req.files.map((file) => file.path),
       categories: parsedCategories,
       userId: req.user._id, // ✅ From protect middleware
@@ -81,8 +83,8 @@ router.post("/", protect, adminOnly, upload.array("images", 5), async (req, res)
    ====================================================== */
 router.put("/:id", protect, adminOnly, upload.array("images", 5), async (req, res) => {
   try {
-    const { title, subtitle, description, price, categories } = req.body;
-    const updateData = { title, subtitle, description, price };
+    const { title, subtitle, description, price, discount, stock, categories } = req.body;
+    const updateData = { title, subtitle, description, price, discount, stock };
 
     if (req.file) {
       updateData.images = req.files.map((f) => f.path);

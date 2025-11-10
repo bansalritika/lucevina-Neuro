@@ -1,7 +1,6 @@
-const express = require("express");
-const Cart = require("../models/Cart");
+import express from "express";
+import Cart from "../models/Cart.js";
 const router = express.Router();
-
 // Get cart
 router.get("/:userId", async (req, res) => {
   try {
@@ -18,14 +17,13 @@ router.get("/:userId", async (req, res) => {
 router.post("/:userId/add", async (req, res) => {
   try {
     const { userId } = req.params;
-    const { productId, name, price, discount, image, stock, quantity, selectedColor, selectedSize } = req.body;
+    const { productId, name, price, discount, image, stock, quantity } = req.body;
     let cart = await Cart.findOne({ userId: req.params.userId });
     if (!cart)
       cart = await Cart.create({ userId, items: [] });
 
     const existingItem = cart.items.find(
-      (item) => item.productId.toString() === productId && item.selectedColor === selectedColor && item.selectedSize === selectedSize
-    );
+      (item) => item.productId.toString() === productId);
     if (existingItem) {
       existingItem.quantity += quantity || 1;
     } else {
@@ -36,9 +34,7 @@ router.post("/:userId/add", async (req, res) => {
         discount,
         quantity,
         image,
-        stock,
-        selectedSize,
-        selectedColor,
+        stock
       });
     }
     cart.updatedAt = Date.now();
@@ -53,13 +49,12 @@ router.post("/:userId/add", async (req, res) => {
 router.put("/:userId/update", async (req, res) => {
   try {
     const { userId } = req.params;
-    const { productId, selectedColor, selectedSize, quantity } = req.body;
+    const { productId, quantity } = req.body;
     const cart = await Cart.findOne({ userId });
     if (!cart) return res.status(404).json({ message: "Cart not found" });
 
     const item = cart.items.find(
-      (item) => item.productId.toString() === productId && item.selectedColor === selectedColor && item.selectedSize === selectedSize
-    );
+      (item) => item.productId.toString() === productId);
 
     if (item) item.quantity = quantity;
     cart.updatedAt = Date.now();
@@ -73,13 +68,12 @@ router.put("/:userId/update", async (req, res) => {
 // Remove item
 router.post("/:userId/remove/:productId", async (req, res) => {
   try {
-    const { productId, selectedColor, selectedSize } = req.body;
+    const { productId } = req.body;
     let cart = await Cart.findOne({ userId: req.params.userId });
     if (!cart) return res.status(404).json({ message: "Cart not found" });
 
     cart.items = cart.items.filter(
-      (item) => item.productId.toString() !== productId || item.selectedColor !== selectedColor || item.selectedSize !== selectedSize
-    );
+      (item) => item.productId.toString() !== productId);
     cart.updatedAt = Date.now();
     await cart.save();
     res.json(cart);
@@ -103,4 +97,4 @@ router.delete("/:userId/clear", async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;

@@ -13,8 +13,6 @@ import NewsletterSection from "@/components/NewsletterSection";
     const [cartItems, setCartItems] = useState<any[]>([]);
     const [product, setProduct] = useState<any>(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [selectedColor, setSelectedColor] = useState<string>("");
-    const [selectedSize, setSelectedSize] = useState<string>("");
     const [userId, setUserId] = useState<string | null>(null);
     const navigate = useNavigate();
 
@@ -35,25 +33,13 @@ import NewsletterSection from "@/components/NewsletterSection";
       }
     }, [localStorage.getItem("isLoggedIn"), localStorage.getItem("userId")]);
 
-    useEffect(() => {
-      if (product?.colors?.length) {
-        setSelectedColor(product.colors[0]);
-      }
-      if (product?.sizes?.length) {
-        setSelectedSize(product.sizes[0]);
-      }
-    }, [product]);
-
     const handleUpdateQuantity = async (
       productId: string,
-      selectedColor: string,
-      selectedSize: string,
       change: number
     ) => {
       if (!userId) return;
       const product = cartItems.find(
-        (p) => p.productId === productId && p.selectedColor === selectedColor && p.selectedSize === selectedSize
-      );
+        (p) => p.productId === productId);
       if (!product) return;
 
       const newQty = Math.max(
@@ -64,8 +50,6 @@ import NewsletterSection from "@/components/NewsletterSection";
       const updatedCart = await updateQuantity(
         userId,
         productId,
-        selectedColor,
-        selectedSize,
         newQty
       );
       setCartItems(updatedCart.items || []);
@@ -73,9 +57,9 @@ import NewsletterSection from "@/components/NewsletterSection";
       localStorage.setItem("cartUpdated", Date.now().toString());
     };
 
-    const handleRemoveItem = async (productId: string, selectedColor: string, selectedSize: string) => {
+    const handleRemoveItem = async (productId: string) => {
       if (!userId) return;
-      const updatedCart = await removeFromCart(userId, productId, selectedColor, selectedSize);
+      const updatedCart = await removeFromCart(userId, productId);
       setCartItems(updatedCart.items || []);
 
       localStorage.setItem("cartUpdated", Date.now().toString());
@@ -204,7 +188,7 @@ import NewsletterSection from "@/components/NewsletterSection";
               <div className="lg:col-span-2 space-y-4">
                 {cartItems.map((product, index) => (
                   <motion.div
-                    key={`${product.productId}-${product.selectedColor || index}-${product.selectedSize || index}`}
+                    key={`${product.productId}`}
                     initial={{ opacity: 0, x: -50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
@@ -227,30 +211,12 @@ import NewsletterSection from "@/components/NewsletterSection";
                               </h3>
                             </Link>
                             <p className="text-lg sm:text-xl font-bold text-price">
-                              ₹
+                              $
                               {(
                                 product.price *
                                 (1 - product.discount / 100)
                               ).toFixed(2)}
                             </p>
-                            <div className="flex items-center space-x-2">
-                              <span className="font-medium">Color:</span>
-                              <div
-                                className="w-5 h-5 rounded-full border-2"
-                                style={{
-                                  backgroundColor:
-                                    product.selectedColor?.toLowerCase(),
-                                }}
-                              />
-                            </div>
-                            <div className="flex items-center space-x-2">
-                              <span className="font-medium">Size:</span>
-                              <div
-                                className="text-xs px-1 md:px-2 rounded-full border-2"
-                              >
-                              {product.selectedSize || "N/A"}
-                              </div>
-                            </div>
                           </div>
                         </div>
 
@@ -263,8 +229,6 @@ import NewsletterSection from "@/components/NewsletterSection";
                                 onClick={() =>
                                   handleUpdateQuantity(
                                     product.productId,
-                                    product.selectedColor,
-                                    product.selectedSize,
                                     -1
                                   )
                                 }
@@ -282,8 +246,6 @@ import NewsletterSection from "@/components/NewsletterSection";
                                 onClick={() =>
                                   handleUpdateQuantity(
                                     product.productId,
-                                    product.selectedColor,
-                                    product.selectedSize,
                                     1
                                   )
                                 }
@@ -296,7 +258,7 @@ import NewsletterSection from "@/components/NewsletterSection";
                             <Button
                               variant="ghost"
                               size="icon"
-                              onClick={() => handleRemoveItem(product.productId, product.selectedColor, product.selectedSize)}
+                              onClick={() => handleRemoveItem(product.productId)}
                               className="text-destructive hover:text-destructive hover:bg-destructive/10"
                             >
                               <Trash2 className="h-4 w-4" />
@@ -304,7 +266,7 @@ import NewsletterSection from "@/components/NewsletterSection";
                           </div>
 
                           <div className="sm:text-right min-w-[100px] text-lg font-bold">
-                            ₹
+                            $
                             {(
                               product.price *
                               (1 - product.discount / 100) *
@@ -331,22 +293,22 @@ import NewsletterSection from "@/components/NewsletterSection";
                     <div className="space-y-3">
                       <div className="flex justify-between">
                         <span>Subtotal</span>
-                        <span>₹{subtotal.toFixed(2)}</span>
+                        <span>${subtotal.toFixed(2)}</span>
                       </div>
                       <div className="flex justify-between">
                         <span>Shipping</span>
                         <span className={shipping === 0 ? "text-success" : ""}>
-                          {shipping === 0 ? "FREE" : `₹${shipping.toFixed(2)}`}
+                          {shipping === 0 ? "FREE" : `$${shipping.toFixed(2)}`}
                         </span>
                       </div>
                       <div className="flex justify-between">
                         <span>Tax</span>
-                        <span>₹{tax.toFixed(2)}</span>
+                        <span>${tax.toFixed(2)}</span>
                       </div>
                       <Separator />
                       <div className="flex justify-between font-bold text-lg">
                         <span>Total</span>
-                        <span>₹{total.toFixed(2)}</span>
+                        <span>${total.toFixed(2)}</span>
                       </div>
                     </div>
                     {shipping === 0 && (

@@ -24,8 +24,6 @@ export const addToCart = async (userId: string, product: any) => {
       image: product.images?.[0],
       stock: product.stock,
       quantity: product.quantity || 1,
-      selectedColor: product.selectedColor || product.color || "",
-      selectedSize: product.selectedSize || product.size || "",
      }),
   });
   return handleResponse(res);
@@ -34,23 +32,21 @@ export const addToCart = async (userId: string, product: any) => {
 export const updateQuantity = async (
   userId: string,
   productId: string,
-  selectedColor: string,
-  selectedSize: string,
   quantity: number
 ) => {
   const res = await fetch(`${API}/${userId}/update`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ productId, selectedColor, selectedSize, quantity }),
+    body: JSON.stringify({ productId, quantity }),
   });
   return handleResponse(res);
 };
 
-export const removeFromCart = async (userId: string, productId: string, selectedColor: string, selectedSize: string) => {
+export const removeFromCart = async (userId: string, productId: string) => {
   const res = await fetch(`${API}/${userId}/remove/${productId}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ productId, selectedColor, selectedSize }),
+    body: JSON.stringify({ productId}),
   });
   return handleResponse(res);
 };

@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { LayoutDashboard, Mail, LogOut, Users, Package } from "lucide-react";
 
 const ACTIVE_ITEM_BLUE = "#414141ff";
-const API_BASE = "http://localhost:5000/api/adminAuth";
+const API_URL = import.meta.env.VITE_API_URL;
+const API_BASE = `${API_URL}/adminAuth`;
 
 export default function AdminLayout() {
   const navigate = useNavigate();
@@ -88,6 +89,13 @@ export default function AdminLayout() {
             onClick={() => navigate("/admin/products")}
           >
             <Package className="w-5 h-5" /> Products
+          </button>
+          <button
+            className="flex items-center gap-3 w-full p-3 rounded font-medium hover:bg-gray-400"
+            style={ isActive("/admin/bloglist") ? { backgroundColor: ACTIVE_ITEM_BLUE } : {} }
+            onClick={() => navigate("/admin/blogs")}
+          >
+            <Package className="w-5 h-5" /> Blog Posts
           </button>
           <button
             className="flex items-center gap-3 w-full p-3 hover:bg-gray-400 rounded font-medium"

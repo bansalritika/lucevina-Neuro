@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
@@ -14,6 +15,14 @@ import ProfilePage from "./pages/ProfilePage";
 import CartPage from "./pages/CartPage";
 import ProductsPage from "./pages/ProductsPage";
 import ProductDetails from "./pages/ProductDetails";
+import Products from "./admins/Products";
+import ShopNow from "./pages/ShopNow";
+import FindYourRoutine from "./pages/FindYourRoutine";
+import AboutPage from "./pages/AboutPage";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
+import FindUs from "./pages/FindUs";
+import CheckoutPage from "./pages/CheckoutPage";
 
 import AdminProtectedRoute from "./admins/adminProtectedRoute";
 import AdminLayout from "./admins/AdminLayout";
@@ -21,11 +30,8 @@ import AdminLogin from "./admins/AdminLogin";
 import Dashboard from "./admins/Dashboard";
 import StatCard from "./admins/StatCard";
 import Categories from "./admins/Categories";
-import Products from "./admins/Products";
-import ShopNow from "./pages/ShopNow";
-import FindYourRoutine from "./pages/FindYourRoutine";
-import AboutPage from "./pages/AboutPage";
-import FindUs from "./pages/FindUs";
+import AdminBlogList from "./admins/BlogList";
+import BlogForm from "./admins/BlogForm";
 
 const queryClient = new QueryClient();
 
@@ -35,6 +41,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+      <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
@@ -48,8 +55,11 @@ const App = () => (
           <Route path="/ourproducts" element={<ShopNow />} />
           <Route path="/routine" element={<FindYourRoutine />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
           <Route path="/findus" element={<FindUs />} />
           <Route path="/cart" element={<CartPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} />
 
           <Route path="/admin-login" element={<AdminLogin />} />
 
@@ -64,6 +74,9 @@ const App = () => (
             <Route index element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="statcard" element={<StatCard />} />
+            <Route path="blogs" element={<AdminBlogList />} />
+            <Route path="blogs/new" element={<BlogForm />} />
+            <Route path="blogs/edit/:id" element={<BlogForm />} />
             <Route path="categories" element={<Categories />} />
             <Route path="products" element={<Products />} />
             {/* <Route path="services" element={<Services />} />
