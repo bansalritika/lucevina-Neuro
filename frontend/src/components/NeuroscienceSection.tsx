@@ -1,5 +1,6 @@
 import face1 from "../assets/face1.jpg";
 import face2 from "../assets/face2.jpg";
+import { Link } from "react-router-dom";
 
 const NeuroscienceSection = () => {
   return (
@@ -14,18 +15,18 @@ const NeuroscienceSection = () => {
         />
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center bg-black/20 p-4">
           <h2 className="text-white font-[cursive] text-xl md:text-2xl font-bold mb-1">
-            Skincare reinvented through neuroscience
+            Skincare reinvented through LUCEVINA
           </h2>
           <p className="text-white text-xs md:text-sm mb-4"
           style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
-            Discover a cosmetics revolution dedicated to the beauty of your skin and your wellbeing.
+            Learn about our journey, philosophy and commitment to skincare backed by neuroscience.
           </p>
-          <a 
-            href="#"
+          <Link
+            to="/about"
             className="px-4 py-2 rounded-[1rem] text-white backdrop-blur-[1.6875rem] border border-white/20 hover:bg-white/10 transition"
           >
             Learn More
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -38,18 +39,18 @@ const NeuroscienceSection = () => {
         />
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center bg-black/20 p-4">
           <h2 className="text-white font-[cursive] text-xl md:text-2xl font-bold mb-1">
-            N|A3™ Technology
+            Our Blog & Insights
           </h2>
           <p className="text-white text-xs md:text-sm mb-4"
           style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
-            Discover the power of our proprietary technology, a breakthrough combination of neuro-ingredients, neuro-fragrances and neuro-textures.
+            Explore articles, expert tips and skincare science designed to help you make informed choices.
           </p>
-          <a 
-            href="#"
+          <Link
+            to="/blog"
             className="px-4 py-2 rounded-[1rem] text-white backdrop-blur-[1.6875rem] border border-white/20 hover:bg-white/10 transition"
           >
             Learn More
-          </a>
+          </Link>
         </div>
       </div>
 

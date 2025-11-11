@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card } from "@/components/ui/card";
 import { toast } from "@/hooks/use-toast";
+import { Checkbox } from "@/components/ui/checkbox"
 import {
   Table,
   TableBody,
@@ -32,6 +33,7 @@ interface Product {
   price: number;
   discount: number;
   stock: number;
+  featured: boolean;
   images: string[];
   categories: Category[];
 }
@@ -43,6 +45,7 @@ interface ProductForm {
   price: string;
   discount: string;
   stock: string;
+  featured: boolean;
   images: (string | File)[];
   mainTypes: CategoryType[];
   selectedCategories: Record<CategoryType, string[]>;
@@ -64,6 +67,7 @@ export default function Products() {
     price: "",
     discount: "",
     stock: "",
+    featured: false,
     images: [],
     mainTypes: [],
     selectedCategories: {
@@ -161,6 +165,7 @@ export default function Products() {
     formData.append("price", form.price);
     formData.append("discount", form.discount);
     formData.append("stock", form.stock);
+    formData.append("featured", form.featured ? "true" : "false");
     form.images.forEach((img) => {
       formData.append("images", img);
     });
@@ -190,6 +195,7 @@ export default function Products() {
           price: "",
           discount: "",
           stock: "",
+          featured: false,
           images: [],
           mainTypes: [],
           selectedCategories: {
@@ -230,6 +236,7 @@ export default function Products() {
       price: prod.price.toString(),
       discount: prod.discount.toString(),
       stock: prod.stock.toString(),
+      featured: prod.featured,
       images: prod.images,
       mainTypes: Array.from(new Set(prod.categories.map((c) => c.categoryType))),
       selectedCategories,
@@ -322,7 +329,16 @@ export default function Products() {
                 name="stock"
               />
             </div>
-
+            <div className="flex items-center space-x-3">
+              <Label htmlFor="featured">Featured Product</Label>
+              <Checkbox
+                id="featured"
+                checked={form.featured}
+                onCheckedChange={(value) =>
+                  setForm({ ...form, featured: Boolean(value) })
+                }
+              />
+            </div>
             <div className="space-y-2">
               <Label>Image</Label>
               <Input type="file" accept=".jpg,.jpeg,.png" multiple onChange={handleImageChange} />
@@ -420,6 +436,7 @@ export default function Products() {
                   <TableHead>Price</TableHead>
                   <TableHead>Discount</TableHead>
                   <TableHead>Stock</TableHead>
+                  <TableHead>Featured</TableHead>
                   <TableHead>Categories</TableHead>
                   <TableHead>Actions</TableHead>
                 </TableRow>
@@ -447,6 +464,7 @@ export default function Products() {
                       <TableCell>${prod.price}</TableCell>
                       <TableCell>{prod.discount}%</TableCell>
                       <TableCell>{prod.stock}</TableCell>
+                      <TableCell>{prod.featured ? "Yes" : "No"}</TableCell>
                       <TableCell>
                         <div className="flex flex-wrap gap-1 text-xs">
                           {prod.categories.map((cat) => (

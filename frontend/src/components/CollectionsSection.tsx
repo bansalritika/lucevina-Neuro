@@ -1,35 +1,18 @@
-import harmonieImg from "../assets/showcase1.png";
-import energieImg from "../assets/showcase2.png";
-import joieImg from "../assets/showcase1.png";
-import sereniteImg from "../assets/showcase2.png";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const CollectionsSection = () => {
-  const collections = [
-    {
-      name: "harmonie",
-      title: "A reset for your skin & well-being",
-      collectionLink: "/harmonie",
-      image: harmonieImg
-    },
-    {
-      name: "énergie",
-      title: "A wakeup call for your tired skin & well-being",
-      collectionLink: "/energie",
-      image: energieImg
-    },
-    {
-      name: "joie",
-      title: "A feeling of joy for your skin & well-being",
-      collectionLink: "/joie",
-      image: joieImg
-    },
-    {
-      name: "sérénité",
-      title: "A veil of serenity for your skin & well-being",
-      collectionLink: "/serenite",
-      image: sereniteImg
-    }
-  ];
+  const [products, setProducts] = useState([]);
+    const API_URL = import.meta.env.VITE_API_URL;
+  
+  useEffect(() => {
+    const load = async () => {
+      const res = await fetch(`${API_URL}/products/featured/four`);
+      const data = await res.json();
+      setProducts(data);
+    };
+    load();
+  }, []);
 
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background">
@@ -47,27 +30,28 @@ const CollectionsSection = () => {
 
       {/* Collections Grid */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-        {collections.map((collection, index) => (
-          <div key={index} className="group cursor-pointer text-center">
+        {products.map((product, index) => (
+          <Link 
+            to={`/product/${product._id}`} 
+            key={index} 
+            className="group cursor-pointer text-center"
+          >
             <div className="aspect-[4/5] rounded-lg overflow-hidden mb-4">
               <img
-                src={collection.image}
-                alt={collection.name}
+                src={product.images[0]}  
+                alt={product.title}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
               />
             </div>
             <div className="text-center">
               <p className="font-[cursive] text-sm mb-2">
-                {collection.title}
+                {product.subtitle}
               </p>
-              <a 
-                href={collection.collectionLink} 
-                className="text-sm font-medium tracking-wide underline hover:no-underline"
-              >
-                {collection.name} collection ;
-              </a>
+              <p className="text-sm font-medium tracking-wide underline hover:no-underline">
+                {product.title} ;
+              </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

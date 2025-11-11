@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import quoteImg from "../assets/quote.png"; // replace with your image path
+import { Link } from "react-router-dom";
 
 const QuoteSection = () => {
   return (
@@ -41,10 +42,10 @@ const QuoteSection = () => {
             >
               ELLE FRANCE
             </cite>
-            <Button className="bg-white text-black px-6 py-2 rounded-[1.5rem] hover:bg-gray-200 transition"
+            <Link to="/ourproducts" className="bg-white text-black px-6 py-2 rounded-[1.5rem] hover:bg-gray-200 transition"
             style={{ fontFamily: "ibmplexmono, Courier New, serif" }}>
               Discover The Products
-            </Button>
+            </Link>
           </div>
 
         </div>

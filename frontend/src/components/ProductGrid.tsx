@@ -1,39 +1,23 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { Card, CardContent } from "@/components/ui/card";
 import Temps from "../assets/Temps1.jpg";
 import harmonieImg from "../assets/harmonie.png";
 
 const ProductSlider = () => {
-  const products = [
-    {
-      name: "harmonie",
-      title: "The Sleeping Mask",
-      subtitle: "Replenishing & Renewing",
-      price: "$140.00",
-      image: harmonieImg
-    },
-    {
-      name: "énergie",
-      title: "The Cream",
-      subtitle: "Energizing & Firming",
-      price: "$170.00",
-      image: harmonieImg
-    },
-    {
-      name: "énergie",
-      title: "The Cream",
-      subtitle: "Energizing & Firming",
-      price: "$170.00",
-      image: harmonieImg
-    },
-    {
-      name: "énergie",
-      title: "The Cream",
-      subtitle: "Energizing & Firming",
-      price: "$170.00",
-      image: harmonieImg
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const API_URL = import.meta.env.VITE_API_URL;
+
+useEffect(() => {
+  const load = async () => {
+    const res = await fetch(`${API_URL}/products/latest/four`);
+    const data = await res.json();
+    setProducts(data);
+  };
+  load();
+}, []);
+
 
   const settings = {
     dots: false,
@@ -76,9 +60,9 @@ const ProductSlider = () => {
             <p className="mb-4"
             style={{fontFamily: "ibmplexmono, Courier New, serif" }}
             >Discover how our products rejuvenate your skin.</p>
-            <button className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition">
+            <Link to="/ourproducts" className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition">
               Discover New Product
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -86,22 +70,23 @@ const ProductSlider = () => {
         <div className="lg:w-2/3">
           <Slider {...settings}>
             {products.map((product, i) => (
-              <div key={i} className="px-2"> {/* spacing between cards */}
+              <div key={i} className="px-2">
+                <Link to={`/product/${product._id}`}>
                 <Card className="bg-black border border-gray-700 text-white h-[500px] lg:h-[600px] flex flex-col">
                   <CardContent className="p-4 h-full flex flex-col">
                     <div className="flex-1 overflow-hidden rounded-lg mb-4">
                       <img
-                        src={product.image}
+                        src={product.images[0]} // first image
                         alt={product.title}
                         className="w-full h-full object-cover"
                       />
                     </div>
-                    <div className="text-sm italic mb-1">{product.name}</div>
+                    <div className="text-sm italic mb-1">{product.subtitle}</div>
                     <h3 className="font-luxury text-lg font-semibold mb-1">{product.title}</h3>
-                    {product.subtitle && <p className="text-sm italic mb-3">{product.subtitle}</p>}
-                    <div className="text-lg font-semibold">{product.price}</div>
+                    <div className="text-lg font-semibold">${product.price}</div>
                   </CardContent>
                 </Card>
+                </Link>
               </div>
             ))}
           </Slider>

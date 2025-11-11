@@ -18,7 +18,7 @@ dotenv.config();
 const app = express();
 
 const allowedOrigins = [
-  // "http://localhost:8080",
+  "http://localhost:8080",
   "https://lucevina-neuro.vercel.app"
 ];
 

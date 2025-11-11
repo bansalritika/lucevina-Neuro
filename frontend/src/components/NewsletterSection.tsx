@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Globe, Instagram, Music } from "lucide-react";
 
 const Footer = () => {
@@ -53,9 +54,9 @@ const Footer = () => {
           <p className="text-muted-foreground mb-6">
             to help you from Monday to Friday from 8 am to 12 pm.
           </p>
-          <a href="#" className="underline text-foreground text-sm hover:no-underline">
-            Contact us &gt;
-          </a>
+          <Link to="/findus" className="underline text-foreground text-sm hover:no-underline">
+            Find us &gt;
+          </Link>
         </div>
       </div>
 

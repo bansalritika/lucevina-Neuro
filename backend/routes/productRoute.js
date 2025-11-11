@@ -38,11 +38,46 @@ router.get("/:id", async (req, res) => {
 });
 
 /* ======================================================
+   🟢 GET FOUR LATEST PRODUCT
+   ====================================================== */
+router.get("/latest/four", async (req, res) => {
+  try {
+    const products = await Product.find({})
+      .sort({ createdAt: -1 })   // newest first
+      .limit(4)
+      .select("title subtitle price images") // send only needed fields
+      .lean();
+
+    res.json(products);
+  } catch (err) {
+    console.error("Latest products fetch error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+/* ======================================================
+   🟢 GET FOUR LATEST FEATURED PRODUCTS
+   ====================================================== */
+router.get("/featured/four", async (req, res) => {
+  try {
+    const products = await Product.find({ featured: true })
+      .sort({ createdAt: -1 })   // newest first
+      .limit(4)
+      .select("title subtitle price images") // send only needed fields
+      .lean();
+    res.json(products);
+  } catch (err) {
+    console.error("Featured products fetch error:", err);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+/* ======================================================
    🟢 ADD NEW PRODUCT (Admin Only)
    ====================================================== */
 router.post("/", protect, adminOnly, upload.array("images", 5), async (req, res) => {
   try {
-    const { title, subtitle, description, price, discount, stock, categories } = req.body;
+    const { title, subtitle, description, price, discount, stock, featured, categories } = req.body;
 
     if (!title || !subtitle || !price || !stock ||!discount || !req.files || req.files.length === 0) {
       return res.status(400).json({ message: "Title, price, and image are required" });
@@ -65,6 +100,7 @@ router.post("/", protect, adminOnly, upload.array("images", 5), async (req, res)
       price,
       discount,
       stock,
+      featured: featured || false,
       images: req.files.map((file) => file.path),
       categories: parsedCategories,
       userId: req.user._id, // ✅ From protect middleware
@@ -83,8 +119,8 @@ router.post("/", protect, adminOnly, upload.array("images", 5), async (req, res)
    ====================================================== */
 router.put("/:id", protect, adminOnly, upload.array("images", 5), async (req, res) => {
   try {
-    const { title, subtitle, description, price, discount, stock, categories } = req.body;
-    const updateData = { title, subtitle, description, price, discount, stock };
+    const { title, subtitle, description, price, discount, stock, featured, categories } = req.body;
+    const updateData = { title, subtitle, description, price, discount, stock, featured };
 
     if (req.file) {
       updateData.images = req.files.map((f) => f.path);

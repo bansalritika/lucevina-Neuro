@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import routineBg from "../assets/routine.jpg"; // replace with your image path
 
 const RoutineFinderSection = () => {
@@ -28,12 +29,12 @@ const RoutineFinderSection = () => {
         style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
           Take our test to get our personalized recommendations.
         </p>
-        <Button 
-          size="lg"
+        <Link
+          to="/routine"
           className="px-8 py-2 rounded-[1.5rem] text-white backdrop-blur-[1.6875rem] bg-white/10 border border-white/20 hover:bg-white/20 transition"
         >
           START
-        </Button>
+        </Link>
       </div>
     </section>
   );
