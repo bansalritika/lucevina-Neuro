@@ -216,9 +216,6 @@ export default function ProductDetails() {
 
           {/* Product Details */}
           <div className="space-y-6">
-            <p className="text-xs tracking-widest text-muted-foreground mb-2">
-              harmonie
-            </p>
             <div className="flex items-start justify-between">
               <h1 className="text-3xl md:text-4xl font-light tracking-wider mb-2">
                 {product.title}
