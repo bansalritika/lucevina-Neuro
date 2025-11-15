@@ -15,7 +15,6 @@ import ProfilePage from "./pages/ProfilePage";
 import CartPage from "./pages/CartPage";
 import ProductsPage from "./pages/ProductsPage";
 import ProductDetails from "./pages/ProductDetails";
-import Products from "./admins/Products";
 import ShopNow from "./pages/ShopNow";
 import FindYourRoutine from "./pages/FindYourRoutine";
 import AboutPage from "./pages/AboutPage";
@@ -29,9 +28,13 @@ import AdminLayout from "./admins/AdminLayout";
 import AdminLogin from "./admins/AdminLogin";
 import Dashboard from "./admins/Dashboard";
 import StatCard from "./admins/StatCard";
+import Customers from "./admins/Customers";
 import Categories from "./admins/Categories";
+import Products from "./admins/Products";
 import AdminBlogList from "./admins/BlogList";
 import BlogForm from "./admins/BlogForm";
+import OrderManage from "./admins/OrderManage";
+// import Messages from "./admins/Messages";
 
 const queryClient = new QueryClient();
 
@@ -74,13 +77,14 @@ const App = () => (
             <Route index element={<Navigate to="/admin/dashboard" replace />} />
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="statcard" element={<StatCard />} />
+            <Route path="customers" element={<Customers />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="products" element={<Products />} />
             <Route path="blogs" element={<AdminBlogList />} />
             <Route path="blogs/new" element={<BlogForm />} />
             <Route path="blogs/edit/:id" element={<BlogForm />} />
-            <Route path="categories" element={<Categories />} />
-            <Route path="products" element={<Products />} />
-            {/* <Route path="services" element={<Services />} />
-            <Route path="messages" element={<AdminMessages />} /> */}
+            {/* <Route path="messages" element={<Messages />} /> */}
+            <Route path="orders" element={<OrderManage />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

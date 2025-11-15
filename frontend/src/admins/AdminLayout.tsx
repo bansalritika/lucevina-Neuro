@@ -1,7 +1,7 @@
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
 import { useState, useEffect } from "react";
-import { LayoutDashboard, Mail, LogOut, Users, Package } from "lucide-react";
+import { LayoutDashboard, Mail, LogOut, Users, Package, Blocks, SprayCan, ShoppingBag } from "lucide-react";
 
 const ACTIVE_ITEM_BLUE = "#414141ff";
 const API_URL = import.meta.env.VITE_API_URL;
@@ -71,8 +71,8 @@ export default function AdminLayout() {
           </button>
           <button
             className="flex items-center gap-3 w-full p-3 rounded font-medium hover:bg-gray-400"
-            style={ isActive("/admin/clients") ? { backgroundColor: ACTIVE_ITEM_BLUE } : {} }
-            onClick={() => navigate("/admin/clients")}
+            style={ isActive("/admin/customers") ? { backgroundColor: ACTIVE_ITEM_BLUE } : {} }
+            onClick={() => navigate("/admin/customers")}
           >
             <Users className="w-5 h-5" /> Customers
           </button>
@@ -88,16 +88,23 @@ export default function AdminLayout() {
             style={ isActive("/admin/products") ? { backgroundColor: ACTIVE_ITEM_BLUE } : {} }
             onClick={() => navigate("/admin/products")}
           >
-            <Package className="w-5 h-5" /> Products
+            <SprayCan className="w-5 h-5" /> Products
           </button>
           <button
             className="flex items-center gap-3 w-full p-3 rounded font-medium hover:bg-gray-400"
             style={ isActive("/admin/bloglist") ? { backgroundColor: ACTIVE_ITEM_BLUE } : {} }
             onClick={() => navigate("/admin/blogs")}
           >
-            <Package className="w-5 h-5" /> Blog Posts
+            <Blocks className="w-5 h-5" /> Blog Posts
           </button>
           <button
+            className="flex items-center gap-3 w-full p-3 rounded font-medium hover:bg-gray-400"
+            style={ isActive("/admin/orders") ? { backgroundColor: ACTIVE_ITEM_BLUE } : {} }
+            onClick={() => navigate("/admin/orders")}
+          >
+            <ShoppingBag className="w-5 h-5" /> Orders
+          </button>
+          {/* <button
             className="flex items-center gap-3 w-full p-3 hover:bg-gray-400 rounded font-medium"
             style={ isActive("/admin/messages") ? { backgroundColor: ACTIVE_ITEM_BLUE } : {} }
             onClick={() => navigate("/admin/messages")}
@@ -108,7 +115,7 @@ export default function AdminLayout() {
                 {messageCount}
             </span>
         )}
-          </button>
+          </button> */}
           </nav>
 
           {/* Logout */}

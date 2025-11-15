@@ -11,6 +11,9 @@ import addressRoute from "./routes/addressRoute.js";
 import paymentRoute from "./routes/paymentRoute.js";
 import orderRoute from "./routes/orderRoute.js";
 import blogRoutes from "./routes/blogRoute.js";
+import customerRoute from "./routes/customerRoute.js";
+import adminOrderRoute from "./routes/adminOrderRoute.js";
+import adminStatsRoute from "./routes/adminStatsRoute.js";
 import bcrypt from "bcryptjs";
 import Admin from "./models/Admin.js";
 
@@ -56,13 +59,17 @@ app.use(express.json());
 
 app.use("/api/authcustom", authRoute);
 app.use("/api/auth", auth);
+app.use("/api/customer", customerRoute);
 app.use("/api/categories", categoryRoute);
 app.use("/api/products", productRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/address", addressRoute);
-app.use("/api/orders", orderRoute);
 app.use("/api/payment", paymentRoute);
 app.use("/api/blogs", blogRoutes);
+app.use("/api/orders", orderRoute);
+app.use("/api/admin/orders", adminOrderRoute);
+app.use("/api/admin/stats", adminStatsRoute);
+
 
 // Sample route
 app.get("/", (req, res) => {
