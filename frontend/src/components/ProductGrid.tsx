@@ -37,7 +37,7 @@ useEffect(() => {
     <section className="bg-black text-white py-16 px-4 sm:px-6 lg:px-8">
       {/* Headline */}
       <div className="max-w-3xl mx-auto text-center mb-12">
-        <h2 className="text-3xl font-bold mb-4">
+        <h2 className="text-3xl font-bold mb-4 font-luxury">
           Proven results on skin's emotional aging.
         </h2>
         <p className="text-lg text-gray-300"
@@ -56,7 +56,7 @@ useEffect(() => {
             className="w-full h-full object-cover rounded-lg opacity-90"
           />
           <div className="absolute inset-0 flex flex-col justify-center items-start p-6 bg-black/20 rounded-lg">
-            <h3 className="text-2xl font-bold mb-2">Reset and Strengthen</h3>
+            <h3 className="text-2xl font-bold mb-2 font-luxury">Reset and Strengthen</h3>
             <p className="mb-4"
             style={{fontFamily: "ibmplexmono, Courier New, serif" }}
             >Discover how our products rejuvenate your skin.</p>

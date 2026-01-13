@@ -9,7 +9,7 @@ const Footer = () => {
       {/* --- Top Section: Newsletter + Customer Service --- */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-2 gap-12 border-b border-border">
         {/* Left: Newsletter */}
-        <div>
+        <div style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
           <h2 className="uppercase text-sm font-medium tracking-widest mb-4">
             LET’S KEEP IN TOUCH
           </h2>
@@ -26,13 +26,13 @@ const Footer = () => {
             />
             <Button
               type="submit"
-              className="rounded-none bg-black text-white hover:bg-black/80 px-8 py-5 text-sm font-medium tracking-wide"
+              className="rounded-none bg-white text-black hover:text hover:bg-black/80 px-8 py-5 text-sm font-medium tracking-wide"
             >
               SUBSCRIBE
             </Button>
           </form>
 
-          <p className="text-xs text-muted-foreground mt-4">
+          <p className="text-xs text-muted-foreground mt-4" >
             For more information on our personal data protection policy,{" "}
             <a href="#" className="underline hover:no-underline">
               click here.
@@ -41,7 +41,7 @@ const Footer = () => {
         </div>
 
         {/* Right: Customer Service */}
-        <div>
+        <div style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
           <h3 className="uppercase text-sm font-medium tracking-widest mb-4">
             CUSTOMER SERVICE
           </h3>
@@ -49,7 +49,7 @@ const Footer = () => {
             Need personalized advice or product information? Our beauty advisers are on-hand at
           </p>
           <p className="text-muted-foreground font-mono mb-2">
-            customercareus@neurae.com
+            customercareus@lucevina.com
           </p>
           <p className="text-muted-foreground mb-6">
             to help you from Monday to Friday from 8 am to 12 pm.
@@ -70,9 +70,9 @@ const Footer = () => {
               className="appearance-none border border-border py-3 pl-4 pr-8 text-sm focus:outline-none bg-transparent"
               defaultValue="United States"
             >
-              <option>United States</option>
-              <option>France</option>
-              <option>United Kingdom</option>
+              <option className="text-black">United States</option>
+              <option className="text-black">France</option>
+              <option className="text-black">United Kingdom</option>
             </select>
             <Globe className="absolute right-2 top-3 w-4 h-4 text-muted-foreground" />
           </div>
@@ -83,7 +83,7 @@ const Footer = () => {
           </div>
 
           <p className="text-muted-foreground text-xs leading-relaxed max-w-xs">
-            Inspired by neuroscience, NEURAÉ is a new skincare brand based on the connection
+            Inspired by neuroscience, LUCEVINA is a new skincare brand based on the connection
             between the skin and emotions. Neuraé aims to reduce the emotional toll of time on our
             facial features by finding effective solutions to visibly target dull, tired, or tense
             skin.

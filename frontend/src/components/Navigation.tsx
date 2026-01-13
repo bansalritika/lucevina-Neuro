@@ -195,7 +195,7 @@ const Navigation = ({ isBannerVisible }) => {
             <img src={logoblack} alt="Lucevina Logo" className="w-auto h-14 tracking-[0.2em]"/></Link>
             </div>
           {/* Desktop Nav */}
-          <div className="relative">
+          <div className="relative" style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
             <div className="ml-10 flex items-baseline relative">
               {navItems.map((item) => (
                 <Link key={item} to={navLinks[item] || "/"}>
@@ -424,12 +424,14 @@ const Navigation = ({ isBannerVisible }) => {
 
           {/* Center Logo */}
           <div className="absolute left-1/2 transform -translate-x-1/2">
+          <Link to="/">
             <img src={logoblack} alt="Lucevina Logo" className="w-auto h-14 tracking-[0.2em]"/>
+          </Link>
           </div>
 
           {/* Right Icons */}
           <div className="flex items-center gap-2">
-            <div className="relative">
+            <div className="relative" style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
   <button
     onClick={() => setSearchOpen(!searchOpen)}
     className="p-2 hover:text-[#C1A75D] transition-colors"
@@ -469,7 +471,7 @@ const Navigation = ({ isBannerVisible }) => {
                 </button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px] bg-background overflow-y-auto">
-                <div className="flex flex-col space-y-4 mt-8">
+                <div className="flex flex-col space-y-4 mt-8" style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
 
                   {navItems.map((item) => {
                     if (item === "OUR PRODUCTS") {

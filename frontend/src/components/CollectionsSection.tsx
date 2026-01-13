@@ -17,7 +17,7 @@ const CollectionsSection = () => {
   return (
     <section className="py-16 px-4 sm:px-6 lg:px-8 bg-background">
       {/* Heading */}
-      <div className="max-w-3xl mx-auto text-center mb-6">
+      <div className="max-w-3xl mx-auto text-center mb-6 font-luxury">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">
           Results you can see & feel
         </h2>

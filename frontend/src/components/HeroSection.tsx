@@ -74,7 +74,7 @@ const HeroSection = () => {
           className="max-w-3xl mx-auto transition-opacity duration-700 ease-in-out"
         >
           {/* Badge */}
-          <div className="inline-flex items-center px-4 py-2 mb-8 bg-background/20 backdrop-blur-sm border border-border/30 rounded-full">
+          <div className="inline-flex items-center px-4 py-2 mb-8 bg-background/20 backdrop-blur-sm border border-border/30 rounded-full" style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
             <span className="text-xs font-medium tracking-[0.2em] text-foreground uppercase">
               {slide.badge}
             </span>
@@ -94,7 +94,7 @@ const HeroSection = () => {
           {/* CTA Button */}
           <Link
           to={slide.link}
-            className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium tracking-wide px-4 py-2 rounded-2xl inline-block transition-colors"
+            className="bg-primary text-primary-foreground hover:bg-primary/90 font-bold tracking-wide px-4 py-2 rounded-2xl inline-block transition-colors" style={{fontFamily: "ibmplexmono, Courier New, serif" }}
           >
             {slide.buttonText}
           </Link>
