@@ -191,9 +191,9 @@ const Navigation = ({ isBannerVisible }) => {
         <div className="hidden xl:flex h-16 items-center justify-between">
           {/* Logo */}
             <div className="w-32">
-            <img src={logoblack} alt="Lucevina Logo" className="w-auto h-14 tracking-[0.2em]"/>
+              <Link to="/">
+            <img src={logoblack} alt="Lucevina Logo" className="w-auto h-14 tracking-[0.2em]"/></Link>
             </div>
-
           {/* Desktop Nav */}
           <div className="relative">
             <div className="ml-10 flex items-baseline relative">
