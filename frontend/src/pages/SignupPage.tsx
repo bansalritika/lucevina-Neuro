@@ -188,7 +188,7 @@ const SignupPage = () => {
               Hello There!
             </CardTitle>
             <CardDescription className="text-lg h-auto">
-              Sign Up and make your account
+              Sign Up To Lucevina
             </CardDescription>
           </CardHeader>
 

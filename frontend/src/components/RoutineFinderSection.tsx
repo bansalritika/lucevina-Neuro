@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import routineBg from "../assets/routine.jpg"; // replace with your image path
+import routineBg from "../assets/routine.jpeg"; // replace with your image path
 
 const RoutineFinderSection = () => {
   return (

@@ -316,7 +316,7 @@ const ShopNow = () => {
               </div>
 
               {/* View Toggle */}
-              <div className="flex items-center space-x-2">
+              {/* <div className="flex items-center space-x-2">
                 <Button
                   variant={viewMode === "grid" ? "default" : "outline"}
                   size="icon"
@@ -333,7 +333,7 @@ const ShopNow = () => {
                 >
                   <List className="w-4 h-4" />
                 </Button>
-              </div>
+              </div> */}
             </div>
           </div>
 

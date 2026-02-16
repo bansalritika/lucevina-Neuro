@@ -2,22 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { Card, CardContent } from "@/components/ui/card";
-import Temps from "../assets/Temps1.jpg";
+import Temps from "../assets/Temps1.jpeg";
 import harmonieImg from "../assets/harmonie.png";
 
 const ProductSlider = () => {
   const [products, setProducts] = useState([]);
   const API_URL = import.meta.env.VITE_API_URL;
 
-useEffect(() => {
-  const load = async () => {
-    const res = await fetch(`${API_URL}/products/latest/four`);
-    const data = await res.json();
-    setProducts(data);
-  };
-  load();
-}, []);
-
+  useEffect(() => {
+    const load = async () => {
+      const res = await fetch(`${API_URL}/products/latest/four`);
+      const data = await res.json();
+      setProducts(data);
+    };
+    load();
+  }, []);
 
   const settings = {
     dots: false,
@@ -40,8 +39,10 @@ useEffect(() => {
         <h2 className="text-3xl font-bold mb-4 font-luxury">
           Proven results on skin's emotional aging.
         </h2>
-        <p className="text-lg text-gray-300"
-        style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
+        <p
+          className="text-lg text-gray-300"
+          style={{ fontFamily: "ibmplexmono, Courier New, serif" }}
+        >
           The brand everyone is talking about with over 20 international awards
         </p>
       </div>
@@ -56,11 +57,19 @@ useEffect(() => {
             className="w-full h-full object-cover rounded-lg opacity-90"
           />
           <div className="absolute inset-0 flex flex-col justify-center items-start p-6 bg-black/20 rounded-lg">
-            <h3 className="text-2xl font-bold mb-2 font-luxury">Reset and Strengthen</h3>
-            <p className="mb-4"
-            style={{fontFamily: "ibmplexmono, Courier New, serif" }}
-            >Discover how our products rejuvenate your skin.</p>
-            <Link to="/ourproducts" className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition">
+            <h3 className="text-2xl font-bold mb-2 font-luxury">
+              Reset and Strengthen
+            </h3>
+            <p
+              className="mb-4"
+              style={{ fontFamily: "ibmplexmono, Courier New, serif" }}
+            >
+              Discover how our products rejuvenate your skin.
+            </p>
+            <Link
+              to="/ourproducts"
+              className="bg-white text-black px-4 py-2 rounded hover:bg-gray-200 transition"
+            >
               Discover New Product
             </Link>
           </div>
@@ -72,20 +81,26 @@ useEffect(() => {
             {products.map((product, i) => (
               <div key={i} className="px-2">
                 <Link to={`/product/${product._id}`}>
-                <Card className="bg-black border border-gray-700 text-white h-[500px] lg:h-[600px] flex flex-col">
-                  <CardContent className="p-4 h-full flex flex-col">
-                    <div className="flex-1 overflow-hidden rounded-lg mb-4">
-                      <img
-                        src={product.images[0]} // first image
-                        alt={product.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div className="text-sm italic mb-1">{product.subtitle}</div>
-                    <h3 className="font-luxury text-lg font-semibold mb-1">{product.title}</h3>
-                    <div className="text-lg font-semibold">${product.price}</div>
-                  </CardContent>
-                </Card>
+                  <Card className="bg-black border border-gray-700 text-white h-[500px] lg:h-[600px] flex flex-col">
+                    <CardContent className="p-4 h-full flex flex-col">
+                      <div className="flex-1 overflow-hidden rounded-lg mb-4">
+                        <img
+                          src={product.images[0]} // first image
+                          alt={product.title}
+                          className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="text-sm italic mb-1">
+                        {product.subtitle}
+                      </div>
+                      <h3 className="font-luxury text-lg font-semibold mb-1">
+                        {product.title}
+                      </h3>
+                      <div className="text-lg font-semibold">
+                        ${product.price}
+                      </div>
+                    </CardContent>
+                  </Card>
                 </Link>
               </div>
             ))}
@@ -97,7 +112,13 @@ useEffect(() => {
 };
 
 // Custom Arrows
-const SampleNextArrow = ({ className, style, onClick, currentSlide, slideCount }: any) => {
+const SampleNextArrow = ({
+  className,
+  style,
+  onClick,
+  currentSlide,
+  slideCount,
+}: any) => {
   if (currentSlide >= slideCount - 2) return null; // hide if no more slides
   return <div className={`${className} text-white`} onClick={onClick} />;
 };

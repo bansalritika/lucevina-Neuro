@@ -73,22 +73,6 @@ const FindYourRoutine = () => {
     <div className="min-h-screen">
       <Navigation />
 
-      {/* Breadcrumb */}
-      <div className="container mx-auto px-6 py-2">
-        <div className="flex items-center gap-2 text-xs text-muted-foreground">
-          <Link to="/" className="hover:text-foreground transition-colors">
-            Lucevina
-          </Link>
-          <ChevronRight className="w-4 h-4" />
-          <Link
-            to="/routine"
-            className="hover:text-foreground transition-colors"
-          >
-            Find Your Routine
-          </Link>
-        </div>
-      </div>
-
       {/* Split Layout */}
       <div className="flex flex-col md:flex-row h-[110vh] overflow-hidden">
         {/* Left side — Video or Image */}
@@ -136,7 +120,7 @@ const FindYourRoutine = () => {
                   className="text-xl md:text-2xl leading-relaxed font-light italic"
                 >
                   Discover your ideal{" "}
-                  <span className="font-semibold">NEURAÉ</span> skincare routine
+                  <span className="font-semibold">LUCEVINA</span> skincare routine
                   by identifying the emotions that affect your skin.
                 </motion.h2>
 

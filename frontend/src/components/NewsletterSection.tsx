@@ -32,12 +32,12 @@ const Footer = () => {
             </Button>
           </form>
 
-          <p className="text-xs text-muted-foreground mt-4" >
+          {/* <p className="text-xs text-muted-foreground mt-4" >
             For more information on our personal data protection policy,{" "}
             <a href="#" className="underline hover:no-underline">
               click here.
             </a>
-          </p>
+          </p> */}
         </div>
 
         {/* Right: Customer Service */}
@@ -61,7 +61,7 @@ const Footer = () => {
       </div>
 
       {/* --- Middle Section: Country + Help/Services/Enterprise --- */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-border">
         {/* Country & Description */}
         <div>
           <h4 className="uppercase text-sm font-medium tracking-widest mb-4">COUNTRY</h4>
@@ -83,8 +83,8 @@ const Footer = () => {
           </div>
 
           <p className="text-muted-foreground text-xs leading-relaxed max-w-xs">
-            Inspired by neuroscience, LUCEVINA is a new skincare brand based on the connection
-            between the skin and emotions. Neuraé aims to reduce the emotional toll of time on our
+            Inspired by science, LUCEVINA is a new skincare brand based on the connection
+            between the skin and emotions. It aims to reduce the emotional toll of time on our
             facial features by finding effective solutions to visibly target dull, tired, or tense
             skin.
           </p>
@@ -94,11 +94,9 @@ const Footer = () => {
         <div>
           <h4 className="uppercase text-sm font-medium tracking-widest mb-4">NEED HELP?</h4>
           <ul className="space-y-2 text-muted-foreground">
-            <li>FREQUENTLY ASKED QUESTIONS</li>
-            <li>FORGOT PASSWORD</li>
-            <li>CONTACT US</li>
-            <li>SITE MAP</li>
-            <li>FIND US</li>
+            <li><Link to="/forgot-password">FORGOT PASSWORD</Link></li>
+            <li><a href="https://wa.me/918295538302">CONTACT US</a></li>
+            <li><Link to="/findus">FIND US</Link></li>
           </ul>
         </div>
 
@@ -106,19 +104,8 @@ const Footer = () => {
         <div>
           <h4 className="uppercase text-sm font-medium tracking-widest mb-4">OUR SERVICES</h4>
           <ul className="space-y-2 text-muted-foreground">
-            <li>ROUTINE FINDER</li>
-            <li>VIRTUAL CONSULTATIONS</li>
-            <li>EMOTION XPLORER</li>
-          </ul>
-        </div>
-
-        {/* Entreprise */}
-        <div>
-          <h4 className="uppercase text-sm font-medium tracking-widest mb-4">ENTREPRISE</h4>
-          <ul className="space-y-2 text-muted-foreground">
-            <li>NEUROSCIENCE</li>
-            <li>WE ARE NEURAÉ</li>
-            <li>NEURAÉ IN THE MEDIA</li>
+            <li><Link to="/routine">ROUTINE FINDER</Link></li>
+            <li><Link to="/blog">OUR BLOGS</Link></li>
           </ul>
         </div>
       </div>

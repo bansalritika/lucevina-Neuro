@@ -1,5 +1,5 @@
-import face1 from "../assets/face1.jpg";
-import face2 from "../assets/face2.jpg";
+import face1 from "../assets/face1.jpeg";
+import face2 from "../assets/face2.jpeg";
 import { Link } from "react-router-dom";
 
 const NeuroscienceSection = () => {

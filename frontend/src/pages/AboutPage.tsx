@@ -150,9 +150,9 @@ const AboutPage = () => {
     <section className=" mx-auto py-20 max-w-4xl space-y-6">
     <div className="text-center text-4xl font-thin mt-10 tracking-widest">How to respond to the effects of tiredness, sadness and stress on the skin?</div>
     
-    <p className="text-sm text-center px-40 leading-relaxed tracking-widest">
-        Our Research Laboratories have targeted three emotional typologies: <b>tiredness, sadness and stress.</b></p>
-        <p className="text-sm text-center px-40 leading-relaxed tracking-widest">
+    <p className="text-sm text-center px-30 leading-relaxed tracking-widest" style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
+        Our Research Laboratories have targeted three emotional typologies: <br/><b>tiredness, sadness and stress.</b></p>
+        <p className="text-sm text-center px-30 leading-relaxed tracking-widest" style={{fontFamily: "ibmplexmono, Courier New, serif" }}>
         With LUCEVINA we have created a <b>pioneering solution</b> to help <b>dull, tired or stressed skin regain optimum condition</b> while reharmonising your facial features.
         </p>
     </section>

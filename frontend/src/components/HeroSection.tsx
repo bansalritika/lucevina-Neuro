@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 // Import your images
-import img1 from "../assets/hero1.jpg";
-import img2 from "../assets/hero2.jpg";
+import img1 from "../assets/hero1.png";
+import img2 from "../assets/hero2.png";
 import img3 from "../assets/hero3.png";
 
 const slides = [
@@ -64,7 +64,7 @@ const HeroSection = () => {
             `}
           />
         ))}
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/80 to-background/60" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/60 to-background/40" />
       </div>
 
       {/* Content */}
