@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Navigation from "@/components/Navigation";
 import NewsletterSection from "@/components/NewsletterSection";
 import { useRef } from "react";
-import Video from "@/assets/desktop-routine-finder.mp4";
+import heroImage from "@/assets/desktop-routine-finder.png";
 import img1 from "@/assets/quiz1.png";
 import logoblack from "../assets/logoblack.png";
 
@@ -32,14 +32,13 @@ const AboutPage = () => {
 
       {/* ===== HERO VIDEO SECTION ===== */}
       <div className="relative w-full h-[100vh] overflow-hidden top-[-64px]">
-        <motion.video
-          key="hero-video"
+        <motion.img
+          src={heroImage}
+          alt="Hero Background"
           className="absolute inset-0 w-full h-full object-cover brightness-75"
-          src={Video}
-          autoPlay
-          muted
-          loop
-          playsInline
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
         />
         <div className="absolute inset-0 flex flex-col justify-center items-center text-center text-white bg-black/30 backdrop-blur-[1px]">
           <h2 className="text-3xl md:text-4xl font-thin italic mb-2 tracking-wide">
@@ -86,15 +85,11 @@ const AboutPage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <video
-                key="video-right"
-                src={Video}
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-              />
+            <img
+              src={heroImage}
+              alt="Emotional Video Replacement"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
             </motion.div>
             <div className="mt-6 w-full">
               <h3 className="text-lg font-semibold mb-2">
@@ -112,12 +107,9 @@ const AboutPage = () => {
       <section ref={sectionRef} className="relative w-full h-[200vh]">
         {/* Sticky video container */}
         <div className="sticky top-0 h-screen overflow-hidden">
-          <video
-            src={Video}
-            autoPlay
-            muted
-            loop
-            playsInline
+          <img
+            src={heroImage}
+            alt="Sticky Background"
             className="absolute inset-0 w-full h-full object-cover brightness-75"
           />
           <div className="absolute bottom-0 left-0 w-full h-10 bg-background rounded-t-[100%]"></div>
